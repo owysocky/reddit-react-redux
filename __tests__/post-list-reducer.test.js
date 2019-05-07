@@ -3,6 +3,7 @@ import Moment from "moment";
 
 describe("test postListReducer", () => {
   let action;
+  let newPost;
   let testData = {
     title: "Gentle doggo",
     post: "Doggo was taught to be gentle when taking treats",
@@ -47,7 +48,7 @@ describe("test postListReducer", () => {
       }
     };
 
-    let newPost = {
+    newPost = {
       [id]: {
         title: title,
         post: post,
@@ -76,7 +77,7 @@ describe("test postListReducer", () => {
         id: id
       }
     };
-    let newPost = {
+    newPost = {
       [id]: {
         title: title,
         post: post,

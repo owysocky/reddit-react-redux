@@ -1,5 +1,6 @@
 export default (state = {}, action) => {
   let newState;
+  let newPost;
   switch (action.type) {
     case "NEW_POST":
       const { id, title, post, timeCreated } = action;
@@ -16,12 +17,12 @@ export default (state = {}, action) => {
 
     case "UPVOTE":
       let newVote = state[action.id].vote + 1;
-      let newPost = Object.assign({}, state[action.id], { vote: newVote });
+      newPost = Object.assign({}, state[action.id], { vote: newVote });
       newState = Object.assign({}, state, { [action.id]: newPost });
       return newState;
 
     case "DOWNVOTE":
-      let newPost = Object.assign({}, state[action.id]);
+      newPost = Object.assign({}, state[action.id]);
       newPost.vote--;
       newState = Object.assign({}, state, { [action.id]: newPost });
       return newState;

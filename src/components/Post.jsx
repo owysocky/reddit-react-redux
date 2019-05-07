@@ -17,7 +17,7 @@ function Post(props) {
     <div>
       <h3>{post.title}</h3>
       <h4>{post.post}</h4>
-      <h4>Likes: {post.votes}</h4>
+      <h4>Likes: {post.vote}</h4>
       <p>{post.timeCreated}</p>
       <button
         onClick={() => {

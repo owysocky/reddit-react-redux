@@ -1,6 +1,5 @@
 import React from "react";
 import Header from "./Header";
-import TicketList from "./TicketList";
 import NewPostForm from "./NewPostForm";
 import Error404 from "./Error404";
 import { Switch, Route, withRouter } from "react-router-dom";
@@ -34,7 +33,7 @@ class App extends React.Component {
 
 const mapStateToProps = state => {
   return {
-    masterTicketList: state
+    masterPostList: state
   };
 };
 

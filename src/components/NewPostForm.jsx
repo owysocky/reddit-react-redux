@@ -9,7 +9,7 @@ function NewPosttForm(props) {
 
   function handleSubmit(event) {
     event.preventDefault();
-    const { dispatch } = prop;
+    const { dispatch } = props;
     let action = {
       type: "NEW_POST",
       post: _post.value,
