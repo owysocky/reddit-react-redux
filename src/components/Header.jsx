@@ -4,13 +4,12 @@ import { Link } from "react-router-dom";
 function Header() {
   return (
     <div>
-      <h1>Help Queue!</h1>
+      <h1>Forum</h1>
       <Link to="/">Home</Link>
       <br />
-      <Link to="/newticket">Create Ticket</Link>
+      <Link to="/newpost">Create Post</Link>
       <br />
-      <Link to="/admin">Admin</Link>
-      <br />
+
       <Link to="/wrongpage">to non existing page</Link>
     </div>
   );
