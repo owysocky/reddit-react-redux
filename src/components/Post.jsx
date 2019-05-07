@@ -1,46 +1,34 @@
 import React from "react";
-import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
-function Ticket(props) {
-  const ticketInformation = (
+function Post(props) {
+  function handleDislike() {
+    const { dispatch } = props;
+    const action = {
+      type: "DOWNVOTE",
+      id: props.post.id
+    };
+    dispatch(action);
+    //props.dispatch({type: "DOWNVOTE", id: props.post.id});
+  }
+
+  let { post } = props;
+  return (
     <div>
-      <style jsx>{`
-        div {
-          background-color: #9fbff2;
-        }
-        div:hover {
-          background-color: #85aff2;
-        }
-        .example {
-          color: #6d5cf2;
-        }
-      `}</style>
-      <h3>
-        {props.location} - {props.names}
-      </h3>
-      <h4>{props.formattedWaitTime}</h4>
-      <hr />
+      <h3>{post.title}</h3>
+      <h4>{post.post}</h4>
+      <h4>Likes: {post.votes}</h4>
+      <p>{post.timeCreated}</p>
+      <button
+        onClick={() => {
+          props.dispatch({ type: "UPVOTE", id: props.post.id });
+        }}
+      >
+        Like
+      </button>
+      <button onClick={handleDislike}>Dislike</button>
     </div>
   );
-  if (props.currentRouterPath === "/admin") {
-    return (
-      <div onClick={() => {props.onTicketSelection(props.ticketId);}}>
-        {ticketInformation}
-      </div>
-    );
-  } else {
-    return <div>{ticketInformation}</div>;
-  }
 }
 
-Ticket.propTypes = {
-  names: PropTypes.string.isRequired,
-  location: PropTypes.string.isRequired,
-  issue: PropTypes.string,
-  formattedWaitTime: PropTypes.string.isRequired,
-  currentRouterPath: PropTypes.string,
-  onTicketSelection: PropTypes.func,
-  ticketId: PropTypes.string.isRequired
-};
-
-export default Ticket;
+export default connect()(Post);

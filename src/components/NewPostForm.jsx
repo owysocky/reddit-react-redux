@@ -17,10 +17,12 @@ function NewPosttForm(props) {
       id: v4(),
       timeCreacted: Moment()
     };
+    dispatch(action);
   }
+
   return (
     <div>
-      <form onSubmit="handleSubmit">
+      <form onSubmit={handleSubmit}>
         <input
           type="text"
           ref={input => {

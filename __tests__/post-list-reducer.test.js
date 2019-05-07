@@ -3,19 +3,20 @@ import Moment from "moment";
 
 describe("test postListReducer", () => {
   let action;
-  let testPost = {
+  let testData = {
     title: "Gentle doggo",
     post: "Doggo was taught to be gentle when taking treats",
     id: 0,
     vote: 23,
     timeCreated: Moment()
   };
+
   test("returns empty object when not defined", () => {
     expect(postListReducer({}, { type: null })).toEqual({});
   });
 
   test("add new post", () => {
-    const { title, post, id, timeCreated } = testPost;
+    const { title, post, id, timeCreated } = testData;
     action = {
       type: "NEW_POST",
       title: title,
@@ -58,5 +59,32 @@ describe("test postListReducer", () => {
 
     action = { type: "UPVOTE", id: id };
     expect(postListReducer(existingPost, action)).toEqual(newPost);
+  });
+
+  test("downvote post", () => {
+    const { title, post, id, vote, timeCreated } = testData;
+    action = {
+      type: "DOWNVOTE",
+      id: id
+    };
+    let oldPost = {
+      [id]: {
+        title: title,
+        post: post,
+        vote: vote,
+        timeCreated: timeCreated,
+        id: id
+      }
+    };
+    let newPost = {
+      [id]: {
+        title: title,
+        post: post,
+        vote: vote - 1,
+        timeCreated: timeCreated,
+        id: id
+      }
+    };
+    expect(postListReducer(oldPost, action)).toEqual(newPost);
   });
 });
